@@ -1,9 +1,9 @@
 name: runner
 on:
   push:
-    branches: [ falco-src ]
+    branches: [ runner ]
   pull_request:
-    branches: [ falco-src ]
+    branches: [ runner ]
 
 env:
   GO111MODULE: on 
@@ -48,6 +48,6 @@ jobs:
         docker buildx build \
           --cache-from "type=local,src=/tmp/.buildx-cache" \
           --platform linux/arm64,linux/amd64 \
-          --output "type=image,push=false" \
+          --output "type=image,push=true" \
           --tag yylt/${{ env.PROJECT }}:${{ env.VERSION }}-${{ steps.date.outputs.date }} \
           --file ${{ env.Dockerfile }} ./
