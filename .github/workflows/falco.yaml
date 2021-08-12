@@ -31,9 +31,9 @@ jobs:
     - name: Check out build code
       uses: actions/checkout@v2
       with:
-        repository: falcosecurity/falco
-        ref: ${{ env.BRANCH }}
-        path: ${{ env.PROJECT }}
+        repository: stedolan/jq
+        ref: jq-1.6
+        path: jq
 
     - name: Cache Docker layers
       uses: actions/cache@v2
@@ -54,7 +54,7 @@ jobs:
       run: |
         docker buildx build \
           --cache-from "type=local,src=/tmp/.buildx-cache" \
-          --platform linux/arm64,linux/amd64 \
+          --platform linux/arm64 \
           --output "type=image,push=true" \
           --tag yylt/${{ env.PROJECT }}-build:${{ env.BRANCH }}-${{ steps.date.outputs.date }} \
           --file ${{ env.Dockerfile }} ./
