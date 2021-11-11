@@ -4,6 +4,7 @@ FROM golang:1.15.14 as builder
 # Copy the Go Modules manifests
 COPY . /
 
+
 # Build
 RUN cd /kubernetes  && \
     export KUBE_GIT_COMMIT="" && \
