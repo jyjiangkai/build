@@ -47,8 +47,8 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.DOCKER_HUB_USER }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        username: jyjiangkai@163.com
+        password: jk...70401991
 
     - name: Docker Buildx (push)
       run: |
@@ -57,5 +57,5 @@ jobs:
           --cache-from "type=local,src=/tmp/.buildx-cache" \
           --platform linux/arm64,linux/amd64 \
           --output "type=image,push=true" \
-          --tag yylt/${{ env.PROJECT }}:1.1-${{ steps.date.outputs.date }} \
+          --tag jyjiangkai/${{ env.PROJECT }}:1.1-${{ steps.date.outputs.date }} \
           --file ../${{ env.Dockerfile }} ./
